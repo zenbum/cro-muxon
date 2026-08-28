@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cro-Muxon Keyboard Shortcuts</title>
+<style>
+  /* Same three themes as the extension's own Theme setting -- see the [T]
+     toggle near the bottom of the page. Kept in sync by hand across each
+     of this site's pages -- no shared stylesheet here. */
+  :root {
+    --bg: #000000;
+    --panel-bg: #003300;
+    --row-border: #002200;
+    --fg: #00ff00;
+    --accent: #00ff00;
+    --border: #00ff00;
+    --border-style: dashed;
+    --font: 'Courier New', Courier, monospace;
+  }
+  body[data-theme="tempered"] {
+    --bg: #0b0e0c;
+    --panel-bg: #14201a;
+    --row-border: #1a251e;
+    --fg: #8fc9a3;
+    --accent: #7fd9a4;
+    --border: #33453a;
+    --border-style: dashed;
+  }
+  body[data-theme="slate"] {
+    --bg: #1c1c1e;
+    --panel-bg: #232325;
+    --row-border: #2c2c2e;
+    --fg: #e5e5e7;
+    --accent: #30d158;
+    --border: #38383a;
+    --border-style: solid;
+    --font: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  h1 {
+    border-bottom: 1px var(--border-style) var(--border);
+    padding-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  h2 {
+    margin-top: 40px;
+    background: var(--panel-bg);
+    padding: 6px 10px;
+    font-size: 1em;
+    letter-spacing: 1px;
+  }
+  p.section-note {
+    opacity: 0.75;
+    font-size: 0.9em;
+    margin: 10px 0 18px;
+  }
+  ul.shortcut-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul.shortcut-list li {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--row-border);
+  }
+  .keys {
+    flex: 0 0 auto;
+    min-width: 190px;
+  }
+  kbd {
+    display: inline-block;
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    font-family: inherit;
+    font-size: 0.85em;
+    font-weight: bold;
+  }
+  .or {
+    opacity: 0.6;
+    font-size: 0.85em;
+    margin: 0 2px;
+  }
+  .desc { opacity: 0.9; }
+  a { color: var(--accent); }
+  footer { margin-top: 48px; opacity: 0.7; font-size: 0.85em; }
+  .theme-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline dotted;
+  }
+  .theme-toggle:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<h1>[CRO-MUXON] Keyboard Shortcuts</h1>
+<p class="section-note">Every shortcut Cro-Muxon uses, kept in sync with the current release. Global
+shortcuts work anywhere in Chrome; the rest only apply while the dashboard (or the
+new-pane start page) has focus.</p>
+
+<h2>GLOBAL (anywhere in Chrome)</h2>
+<ul class="shortcut-list">
+  <li><span class="keys"><kbd>Alt+Shift+C</kbd></span><span class="desc">Focus the dashboard if it's open but not focused, otherwise toggle it open/closed</span></li>
+  <li><span class="keys"><kbd>Alt+Shift+V</kbd></span><span class="desc">Split the active pane vertically</span></li>
+  <li><span class="keys"><kbd>Alt+Shift+H</kbd></span><span class="desc">Split the active pane horizontally</span></li>
+  <li><span class="keys"><kbd>Alt+Shift+D</kbd></span><span class="desc">Close the active pane</span></li>
+</ul>
+
+<h2>DASHBOARD — full view</h2>
+<ul class="shortcut-list">
+  <li><span class="keys"><kbd>j</kbd> / <kbd>k</kbd><span class="or">or</span><kbd>&darr;</kbd> / <kbd>&uarr;</kbd></span><span class="desc">Move the cursor down/up through panes</span></li>
+  <li><span class="keys"><kbd>h</kbd> / <kbd>l</kbd><span class="or">or</span><kbd>&larr;</kbd> / <kbd>&rarr;</kbd></span><span class="desc">Collapse the current workspace / expand the nearest collapsed one</span></li>
+  <li><span class="keys"><kbd>Shift+K</kbd> / <kbd>Shift+J</kbd><span class="or">or</span><kbd>Shift+&uarr;</kbd> / <kbd>Shift+&darr;</kbd></span><span class="desc">Jump to the previous/next workspace</span></li>
+  <li><span class="keys"><kbd>Alt+Shift+K</kbd> / <kbd>Alt+Shift+J</kbd><span class="or">or</span><kbd>Alt+Shift+&uarr;</kbd> / <kbd>Alt+Shift+&darr;</kbd></span><span class="desc">Reorder the workspace under the cursor, swapping it with its neighbor one slot up/down. A workspace named "default" stays pinned to the top slot; without one, the whole list is freely reorderable</span></li>
+  <li><span class="keys"><kbd>0</kbd>&ndash;<kbd>9</kbd></span><span class="desc">Jump straight to that workspace's number</span></li>
+  <li><span class="keys"><kbd>/</kbd></span><span class="desc">Filter panes by title (or by workspace name)</span></li>
+  <li><span class="keys"><kbd>Enter</kbd></span><span class="desc">Switch to the selected pane</span></li>
+  <li><span class="keys"><kbd>n</kbd></span><span class="desc">New workspace root</span></li>
+  <li><span class="keys"><kbd>r</kbd></span><span class="desc">Rename the selected workspace</span></li>
+  <li><span class="keys"><kbd>a</kbd></span><span class="desc">Give the pane under the cursor a short alias, replacing its tab title in the list</span></li>
+  <li><span class="keys"><kbd>Shift+A</kbd></span><span class="desc">Annotate the pane under the cursor in a small floating popup &mdash; autosaves as you type; <kbd>f</kbd>/<kbd>Space</kbd> show it read-only under the pane when zoomed</span></li>
+  <li><span class="keys"><kbd>Shift+D</kbd></span><span class="desc">Close every pane in the selected workspace</span></li>
+  <li><span class="keys"><kbd>Shift+M</kbd> / <kbd>Shift+O</kbd></span><span class="desc">Fold every workspace closed at once / open them all back up</span></li>
+  <li><span class="keys"><kbd>y</kbd> / <kbd>p</kbd></span><span class="desc">Yank the URL of the pane under the cursor / put it into another pane, without switching to either one</span></li>
+  <li><span class="keys"><kbd>d</kbd></span><span class="desc">Blank the pane under the cursor back to the built-in empty-pane start page, whatever it currently has open</span></li>
+  <li><span class="keys"><kbd>f</kbd></span><span class="or">or click</span><span class="desc">Zoom the pane under the cursor to fill most of the screen (padded so the panes behind still peek out, and never covering the dashboard), without changing the workspace's layout &mdash; clicking an already-active pane does the same. <kbd>Esc</kbd> zooms back out, or click the zoomed pane again</span></li>
+  <li><span class="keys"><kbd>Space</kbd></span><span class="desc">Same zoom as <kbd>f</kbd>, but always jumps real focus onto the pane afterward, regardless of "Keep focus on navigator" &mdash; the default way to jump into a pane</span></li>
+  <li><span class="keys"><kbd>:</kbd> / <kbd>o</kbd></span><span class="desc">Open a URL, with history/bookmark autocomplete</span></li>
+  <li><span class="keys"><kbd>e</kbd> / <kbd>Shift+E</kbd></span><span class="desc">Export the current/entire workspace(s) to a file</span></li>
+  <li><span class="keys"><kbd>i</kbd></span><span class="desc">Import a layout, added alongside what's already open</span></li>
+  <li><span class="keys"><kbd>t</kbd></span><span class="desc">Toggle thin mode</span></li>
+  <li><span class="keys"><kbd>c</kbd><span class="or">or</span>(gear icon)</span><span class="desc">Settings: "Keep visible" (see thin mode below), "Keep focus on navigator" (p/d update a pane silently instead of raising it), zoom padding, and Theme (Current/Tempered Terminal/Slate). Modal while open — every other key stops responding (the rest of the dashboard dims) except <kbd>v</kbd>/<kbd>f</kbd>, which toggle Keep visible/Keep focus on navigator directly, <kbd>z</kbd>/<kbd>t</kbd>, which rotate zoom padding/theme through their own presets (applied immediately), and <kbd>c</kbd>/<kbd>Esc</kbd>/<kbd>q</kbd>, which close it</span></li>
+  <li><span class="keys"><kbd>q</kbd> / <kbd>Esc</kbd></span><span class="desc">Close the dashboard</span></li>
+</ul>
+
+<h2>DASHBOARD — thin mode</h2>
+<p class="section-note">A narrow, icon-width strip listing just workspace names &mdash; a
+lightweight quick-switcher you can leave open at the edge of the screen instead of
+opening and closing the full dashboard each time.</p>
+<ul class="shortcut-list">
+  <li><span class="keys"><kbd>j</kbd> / <kbd>k</kbd><span class="or">or</span><kbd>&darr;</kbd> / <kbd>&uarr;</kbd></span><span class="desc">Move between workspace names</span></li>
+  <li><span class="keys"><kbd>Alt+Shift+K</kbd> / <kbd>Alt+Shift+J</kbd><span class="or">or</span><kbd>Alt+Shift+&uarr;</kbd> / <kbd>Alt+Shift+&darr;</kbd></span><span class="desc">Reorder the selected workspace, same as full mode</span></li>
+  <li><span class="keys"><kbd>Enter</kbd></span><span class="desc">Switch to that workspace's last-focused pane</span></li>
+  <li><span class="keys"><kbd>/</kbd></span><span class="desc">Search &mdash; matches pane titles too, showing a snippet under the workspace name</span></li>
+  <li><span class="keys"><kbd>Shift+D</kbd></span><span class="desc">Close every pane in the selected workspace</span></li>
+  <li><span class="keys"><kbd>y</kbd> / <kbd>p</kbd></span><span class="desc">Yank / put a workspace's URL, same as full mode</span></li>
+  <li><span class="keys"><kbd>d</kbd></span><span class="desc">Blank the workspace's pane, same as full mode</span></li>
+  <li><span class="keys"><kbd>f</kbd></span><span class="or">or click</span><span class="desc">Zoom / <kbd>Esc</kbd> to un-zoom, same as full mode</span></li>
+  <li><span class="keys"><kbd>Space</kbd></span><span class="desc">Zoom and jump focus into the workspace's pane, same as full mode</span></li>
+  <li><span class="keys"><kbd>e</kbd> / <kbd>i</kbd> / <kbd>n</kbd></span><span class="desc">Export / import / new workspace, same as full mode</span></li>
+  <li><span class="keys"><kbd>t</kbd></span><span class="desc">Back to the full dashboard</span></li>
+  <li><span class="keys"><kbd>q</kbd> / <kbd>Esc</kbd></span><span class="desc">Close the dashboard</span></li>
+</ul>
+
+<h2>NEW-PANE START PAGE</h2>
+<p class="section-note">Fresh panes are popup windows with no toolbar, so this page stands
+in for the address bar. <kbd>Alt+Shift+C</kbd> opens the dashboard from here, same as anywhere.</p>
+<ul class="shortcut-list">
+  <li><span class="keys">(type)</span><span class="desc">Search history/bookmarks or type a URL &mdash; the search box is always focused</span></li>
+  <li><span class="keys"><kbd>Enter</kbd></span><span class="desc">Go to the highlighted result or typed URL, or refocus the search box if nothing else is focused</span></li>
+  <li><span class="keys">"Keyboard shortcuts" (footer)</span><span class="desc">Expand this same shortcut list in place</span></li>
+</ul>
+
+<footer><a href="index.html">&larr; Back to Cro-Muxon</a> &middot; <button type="button" class="theme-toggle" id="theme-toggle" title="Cycle theme (t)">[T]heme</button></footer>
+
+<script>
+  (function () {
+    var THEMES = ['current', 'tempered', 'slate'];
+    var LABELS = { current: 'Current', tempered: 'Tempered', slate: 'Slate' };
+    var STORAGE_KEY = 'cro-muxon-theme';
+    var toggle = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+      document.body.dataset.theme = theme;
+      toggle.textContent = '[T]heme: ' + LABELS[theme];
+      try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+    }
+
+    function cycleTheme() {
+      var idx = THEMES.indexOf(document.body.dataset.theme || 'current');
+      applyTheme(THEMES[(idx + 1) % THEMES.length]);
+    }
+
+    var stored;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    applyTheme(THEMES.indexOf(stored) !== -1 ? stored : 'current');
+
+    toggle.addEventListener('click', cycleTheme);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 't' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) {
+        cycleTheme();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

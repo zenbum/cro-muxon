@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cro-Muxon Privacy Policy</title>
+<style>
+  /* Same three themes as the extension's own Theme setting -- see the [T]
+     toggle near the bottom of the page. Kept in sync by hand across each
+     of this site's pages -- no shared stylesheet here. */
+  :root {
+    --bg: #000000;
+    --panel-bg: #003300;
+    --code-bg: #001a00;
+    --fg: #00ff00;
+    --accent: #00ff00;
+    --border: #00ff00;
+    --border-style: dashed;
+    --glow: 0 0 3px var(--accent);
+    --font: 'Courier New', Courier, monospace;
+  }
+  body[data-theme="tempered"] {
+    --bg: #0b0e0c;
+    --panel-bg: #14201a;
+    --code-bg: #14201a;
+    --fg: #8fc9a3;
+    --accent: #7fd9a4;
+    --border: #33453a;
+    --border-style: dashed;
+  }
+  body[data-theme="slate"] {
+    --bg: #1c1c1e;
+    --panel-bg: #232325;
+    --code-bg: #232325;
+    --fg: #e5e5e7;
+    --accent: #30d158;
+    --border: #38383a;
+    --border-style: solid;
+    --glow: none;
+    --font: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    line-height: 1.6;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  h1 {
+    border-bottom: 1px var(--border-style) var(--border);
+    padding-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  h2 {
+    margin-top: 40px;
+    background: var(--panel-bg);
+    padding: 4px 8px;
+    display: inline-block;
+  }
+  a { color: var(--accent); }
+  code {
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  .updated { opacity: 0.75; font-size: 0.9em; }
+  strong { text-shadow: var(--glow); }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 10px; }
+  .theme-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline dotted;
+  }
+  .theme-toggle:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<h1>[CRO-MUXON] Privacy Policy</h1>
+<p class="updated">Last updated: 2026-08-26</p>
+
+<p>Cro-Muxon is a keyboard-driven window-tiling workspace manager for Chrome.
+This policy explains what data the extension touches and, more importantly,
+what it does not do with it.</p>
+
+<h2>Summary</h2>
+<p><strong>Cro-Muxon does not collect, transmit, sell, or share any data.</strong>
+Everything it stores stays on your device, in your own browser's local
+extension storage. The extension makes no network requests of any kind.</p>
+
+<h2>What Cro-Muxon stores, and where</h2>
+<p>All data is kept in Chrome's <code>chrome.storage.local</code>, which is
+private to your browser profile and is never synced to a server or sent
+anywhere:</p>
+<ul>
+  <li><strong>Workspace layout</strong> — the tree of split panes you create,
+    the window IDs belonging to each workspace, and the screen bounds of each
+    pane, so the extension can restore and re-tile your layout.</li>
+  <li><strong>Tab titles and URLs of windows you have chosen to manage</strong>
+    — used only to show the pane picker (the on-screen list of your
+    workspaces) and to restore a workspace's tabs when you save/load a layout
+    to a local JSON file.</li>
+  <li><strong>The ID of your last-focused window</strong> — used to highlight
+    the correct pane when you open the picker.</li>
+</ul>
+<p>None of this is readable by other extensions, other websites, or by us —
+it lives entirely inside your own browser installation.</p>
+
+<h2>Permissions Cro-Muxon requests, and why</h2>
+<ul>
+  <li><strong>tabs</strong> — to read tab titles/URLs for the windows you
+    manage, and to open, switch, or navigate tabs when you use the pane
+    picker.</li>
+  <li><strong>storage</strong> — to save your workspace layout locally, as
+    described above.</li>
+  <li><strong>sidePanel</strong> — to host the extension's dashboard UI.</li>
+  <li><strong>system.display</strong> — to read your screen's usable work
+    area so panes can be tiled to fill it correctly (no display content is
+    read, only geometry).</li>
+  <li><strong>history</strong> / <strong>bookmarks</strong> — to power the
+    <code>:open</code> command's autocomplete suggestions when you're typing
+    a URL to navigate to. Searches are performed locally via Chrome's own
+    history/bookmarks APIs; nothing is sent anywhere.</li>
+  <li><strong>alarms</strong> — to keep the extension's background service
+    worker alive during multi-step window operations (e.g. splitting a
+    pane); this does not read or store any user data.</li>
+  <li><strong>clipboardRead</strong> / <strong>clipboardWrite</strong> — to
+    support copying a pane's URL and pasting it into another pane directly
+    from the dashboard (the <code>y</code> / <code>p</code> shortcuts).
+    Clipboard contents are only read at the moment you press <code>p</code>,
+    are used solely to navigate the pane you're pasting into, and are never
+    stored or sent anywhere.</li>
+</ul>
+
+<h2>Local export/import</h2>
+<p>If you use the Save/Load-to-disk feature, your workspace layout (pane
+structure, bounds, and tab URLs) is written to or read from a JSON file you
+explicitly choose on your own filesystem. This file is created and read only
+on your device — Cro-Muxon never uploads it anywhere.</p>
+
+<h2>Third parties</h2>
+<p>Cro-Muxon does not use analytics, advertising, or crash-reporting
+services, and does not communicate with any server operated by us or anyone
+else.</p>
+
+<h2>Changes to this policy</h2>
+<p>If this policy changes, the "Last updated" date above will be revised and
+the new version will be published at this same location.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy can be sent to:
+<strong id="contact-email"></strong></p>
+
+<p><a href="index.html">&larr; Back to Cro-Muxon</a> &middot; <button type="button" class="theme-toggle" id="theme-toggle" title="Cycle theme (t)">[T]heme</button></p>
+
+<script>
+  (function () {
+    document.getElementById("contact-email").textContent = "cro-muxon" + "@" + "zenbum.com";
+  })();
+</script>
+
+<script>
+  (function () {
+    var THEMES = ['current', 'tempered', 'slate'];
+    var LABELS = { current: 'Current', tempered: 'Tempered', slate: 'Slate' };
+    var STORAGE_KEY = 'cro-muxon-theme';
+    var toggle = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+      document.body.dataset.theme = theme;
+      toggle.textContent = '[T]heme: ' + LABELS[theme];
+      try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+    }
+
+    function cycleTheme() {
+      var idx = THEMES.indexOf(document.body.dataset.theme || 'current');
+      applyTheme(THEMES[(idx + 1) % THEMES.length]);
+    }
+
+    var stored;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    applyTheme(THEMES.indexOf(stored) !== -1 ? stored : 'current');
+
+    toggle.addEventListener('click', cycleTheme);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 't' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) {
+        cycleTheme();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

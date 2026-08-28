@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cro-Muxon Changelog</title>
+<style>
+  /* Same three themes as the extension's own Theme setting -- see the [T]
+     toggle near the bottom of the page. Kept in sync by hand across each
+     of this site's pages -- no shared stylesheet here. */
+  :root {
+    --bg: #000000;
+    --panel-bg: #003300;
+    --fg: #00ff00;
+    --accent: #00ff00;
+    --border: #00ff00;
+    --border-style: dashed;
+    --font: 'Courier New', Courier, monospace;
+  }
+  body[data-theme="tempered"] {
+    --bg: #0b0e0c;
+    --panel-bg: #14201a;
+    --fg: #8fc9a3;
+    --accent: #7fd9a4;
+    --border: #33453a;
+    --border-style: dashed;
+  }
+  body[data-theme="slate"] {
+    --bg: #1c1c1e;
+    --panel-bg: #232325;
+    --fg: #e5e5e7;
+    --accent: #30d158;
+    --border: #38383a;
+    --border-style: solid;
+    --font: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  h1 {
+    border-bottom: 1px var(--border-style) var(--border);
+    padding-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .version {
+    margin-top: 40px;
+  }
+  .version-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background: var(--panel-bg);
+    padding: 6px 10px;
+  }
+  .version-header .num { font-weight: bold; font-size: 1.1em; }
+  .version-header .date { opacity: 0.75; font-size: 0.85em; }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--accent); }
+  footer { margin-top: 48px; opacity: 0.7; font-size: 0.85em; }
+  .theme-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline dotted;
+  }
+  .theme-toggle:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<h1>[CRO-MUXON] Changelog</h1>
+
+<div class="version">
+  <div class="version-header">
+    <span class="num">v1.1.0</span>
+    <span class="date">2026-08-28 &middot; Feature update</span>
+  </div>
+  <ul>
+    <li>New: press <code>a</code> on the pane under the cursor to give it a
+      short alias &mdash; a label that replaces its tab title in the
+      dashboard list, handy when the real page title is long or unhelpful.</li>
+    <li>New: press <code>Shift+A</code> to annotate the pane under the
+      cursor &mdash; a small floating note docked over its corner, saving
+      as you type. Reopening it shows whatever you already wrote instead of
+      starting blank.</li>
+    <li>New: <code>f</code> (and <code>Space</code>) now show that note as
+      a read-only strip right under the pane when you zoom in for a closer
+      look, so it's there for context, not just for editing. A pane with no
+      note zooms exactly as before, full size.</li>
+    <li>New: a pane with a note shows a small &dagger; marker in the
+      dashboard list, so reminders on a workspace you just imported are
+      easy to spot at a glance.</li>
+    <li>New: closing the annotation popup now returns you to the
+      dashboard, instead of leaving focus wherever it happened to land.</li>
+    <li>New: in thin mode, a workspace named starting with an emoji shows
+      just that emoji instead of the full name &mdash; the strip is narrow
+      enough that the rest would usually get cut off anyway.</li>
+    <li>New Theme setting (gear icon, or <code>c</code>): switch between
+      "Tempered Terminal" (a softer, desaturated green), "Slate" (a
+      neutral dark theme with a single accent color), or the original CRT
+      green. Slate is now the default for new installs and anyone who
+      hasn't already changed this &mdash; the classic green is one click
+      away in Settings. Changes apply immediately.</li>
+    <li>New: hovering a pane in the dashboard list now shows a subtle
+      highlight.</li>
+    <li>Changed: <code>Space</code> now shrinks the dashboard down to its
+      narrow strip before popping up the pane under the cursor, instead of
+      leaving the full-width list open behind it.</li>
+    <li>Changed: reopening the dashboard while it's in its narrow "thin"
+      mode now snaps it back to full width automatically.</li>
+    <li>Changed: exporting a workspace no longer stamps a timestamp onto
+      the filename &mdash; exporting the same workspace again now overwrites
+      its file, behind a confirmation prompt that shows the filename first.</li>
+    <li>Changed: simplified the empty-pane start page &mdash; larger text,
+      it now follows your chosen Theme instead of always being the
+      original CRT green, and the keyboard shortcuts list is tucked behind
+      a small toggle instead of always taking up space. Pressing Enter
+      there now always returns you to the search box, and the small corner
+      icon for opening the dashboard is gone &mdash; <code>Alt+Shift+C</code>
+      still opens it from anywhere.</li>
+    <li>Changed: Slate's selected-pane highlight is now a solid,
+      high-contrast fill instead of a faint tint that was easy to miss.</li>
+    <li>New: choosing an empty pane in the dashboard now always jumps
+      focus onto it regardless of "Keep focus on navigator" &mdash; its
+      only real content is its own search box, so landing there without
+      focus wasn't useful. Every other pane still respects the setting.</li>
+    <li>Fixed: an update landing while the dashboard (or an annotation
+      popup) was open could leave the old window behind as an empty,
+      broken frame.</li>
+    <li>Fixed: the empty-pane start page's "Keyboard shortcuts" toggle
+      didn't actually show or hide anything, and the list is now one
+      shortcut per line instead of a two-column layout that wrapped some
+      entries awkwardly.</li>
+    <li>Fixed: right-clicking the empty-pane start page showed no context
+      menu at all. It's an ordinary pane like any other, so it now gets
+      the same right-click menu (split, close, open navigator) as any
+      other pane.</li>
+  </ul>
+</div>
+
+<div class="version">
+  <div class="version-header">
+    <span class="num">v1.1.1</span>
+    <span class="date">2026-08-29 &middot; Bug fix</span>
+  </div>
+  <ul>
+    <li>Fixed: the empty-pane auto-focus behavior added in 1.1.0 was too
+      broad. It now only applies to pressing Enter on an empty pane in the
+      full-width dashboard &mdash; clicking a pane, and anything in thin
+      mode, respect "Keep focus on navigator" like every other pane again.</li>
+    <li>Fixed: the read-only annotation strip (<code>f</code>/<code>Space</code>,
+      shown under a zoomed pane) looked exactly like an editable text box
+      but silently ignored anything typed into it. It's now genuinely
+      editable and saves as you type, just like the <code>Shift+A</code>
+      popup.</li>
+  </ul>
+</div>
+
+<div class="version">
+  <div class="version-header">
+    <span class="num">v1.0.3</span>
+    <span class="date">2026-08-27 &middot; Feature update</span>
+  </div>
+  <ul>
+    <li>New: press <code>Space</code> on the pane under the cursor to zoom
+      it, same as <code>f</code>, but always jump real focus onto it
+      afterward regardless of "Keep focus on navigator" &mdash; the
+      default, unambiguous way to jump into a pane.</li>
+    <li>New: right-click a link on any page &mdash; "Open link in New
+      Cro-Muxon workspace" opens it straight into a fresh workspace,
+      skipping the copy-then-paste round trip, and brings the navigator
+      into view with the new pane already selected.</li>
+    <li>New: right-click any page for mouse equivalents of split
+      vertically, split horizontally, close pane, and open navigator
+      &mdash; each item shows its keyboard shortcut too. Right-click the
+      dashboard itself for its own menu: new workspace, import/export the
+      current workspace, fold/unfold every workspace at once, and close
+      navigator.</li>
+    <li>New: <code>Alt+Shift+Up</code>/<code>Alt+Shift+Down</code> (or
+      <code>Alt+Shift+K</code>/<code>Alt+Shift+J</code>) in the dashboard
+      reorders the workspace under the cursor, swapping it with its
+      neighbor one slot up/down. A workspace named "default" stays pinned
+      to the top slot.</li>
+    <li>Fixed: closing the dashboard while a pane was zoomed left it stuck
+      at its near-fullscreen zoomed size. Every way the dashboard can
+      close now un-zooms it too.</li>
+  </ul>
+</div>
+
+<div class="version">
+  <div class="version-header">
+    <span class="num">v1.0.2</span>
+    <span class="date">2026-08-26 &middot; Feature update</span>
+  </div>
+  <ul>
+    <li>New thin mode: press <code>t</code> to shrink the dashboard to a
+      narrow strip of just workspace names &mdash; a lightweight
+      quick-switcher you can leave open at the edge of the screen instead
+      of opening and closing the full dashboard each time.</li>
+    <li>New "Keep visible" setting (gear icon, or <code>c</code>) shrinks
+      the active workspace's rightmost pane(s) just enough that the
+      dashboard is never covered by them in the first place. Settings is
+      modal while open: <code>v</code>/<code>f</code> toggle "Keep
+      visible"/"Keep focus on navigator" directly, <code>z</code> rotates
+      zoom padding through a few presets (live if a pane is currently
+      zoomed), and everything else dims and pauses until you close it.</li>
+    <li><code>Alt+Shift+C</code> now focuses the dashboard first if it's
+      open but not the focused window, instead of always closing it &mdash;
+      a second press closes it once it's already focused.</li>
+    <li>New: press <code>f</code> &mdash; or click an already-active pane
+      &mdash; to zoom it to fill most of the screen without touching your
+      actual layout. Press <code>Esc</code>, or click it again, to snap it
+      right back.</li>
+    <li>New: <code>y</code>/<code>p</code> yank a pane's URL and put it
+      into another pane, without switching to either one.</li>
+    <li>New: <code>d</code> blanks the pane under the cursor back to the
+      empty-pane start page, whatever it currently has open.</li>
+    <li>New "Keep focus on navigator" setting: when on, actions like
+      <code>p</code> and <code>d</code> update a pane in the background
+      instead of briefly switching to it first.</li>
+    <li><code>h</code>/<code>j</code>/<code>k</code>/<code>l</code> now
+      work as vim-style navigation throughout the dashboard, alongside
+      the arrow keys.</li>
+    <li><code>/</code> live-filters the pane list as you type, by pane
+      title or workspace name.</li>
+    <li>Click a workspace's header to collapse it out of the way;
+      <code>Shift+M</code>/<code>Shift+O</code> fold or unfold every
+      workspace at once.</li>
+    <li><code>Shift+D</code> closes every pane in the selected workspace
+      at once. <code>Shift+&uarr;</code>/<code>Shift+&darr;</code> jumps
+      to the previous/next workspace instead of stepping pane by pane,
+      and a number key jumps straight to a given workspace.</li>
+    <li>Your layout now survives a full browser restart on its own, not
+      just a crash.</li>
+    <li>Fresh, empty panes now open a small start page with a working
+      search box and quick access to the dashboard, instead of Chrome's
+      blank New Tab page.</li>
+    <li>Fixed several cases where the dashboard, or a pane you just
+      created/activated/zoomed, could silently lose keyboard focus.</li>
+    <li>Fixed dragging a pane's border not always resizing every other
+      pane that actually shares that edge.</li>
+    <li>Fixed a new pane sometimes not becoming the visible/active one
+      right after it was created.</li>
+  </ul>
+</div>
+
+<div class="version">
+  <div class="version-header">
+    <span class="num">v1.0.1</span>
+    <span class="date">2026-08-25 &middot; Bug fix</span>
+  </div>
+  <ul>
+    <li>Fixed workspace splitting sometimes leaving a pane stuck showing a
+      wrong, scaled-down frame until you clicked or pressed a key.</li>
+    <li>Fixed the pane picker opening full-screen instead of as a narrow
+      panel when the active window was already in native fullscreen.</li>
+    <li>Fixed the dashboard's shortcut legend showing key combos that didn't
+      actually do anything &mdash; it now shows the real shortcuts.</li>
+    <li>Fixed the dashboard's version number sometimes showing an outdated
+      value.</li>
+    <li>Redesigned the toolbar icon to be clearer at small sizes.</li>
+  </ul>
+</div>
+
+<div class="version">
+  <div class="version-header">
+    <span class="num">v1.0.0</span>
+    <span class="date">2026-08-24 &middot; Initial release</span>
+  </div>
+  <ul>
+    <li>Tile any window into panes, horizontally or vertically, from the
+      keyboard.</li>
+    <li>Drag one pane's edge and its neighbor resizes to match, just like a
+      terminal multiplexer.</li>
+    <li>A retro dashboard to jump between panes, rename workspaces, and open
+      URLs &mdash; with local history/bookmark autocomplete.</li>
+    <li>Save your entire tiled layout to a file and load it back later.</li>
+    <li>100% local: no network requests, no data collection.</li>
+  </ul>
+</div>
+
+<footer><a href="index.html">&larr; Back to Cro-Muxon</a> &middot; <button type="button" class="theme-toggle" id="theme-toggle" title="Cycle theme (t)">[T]heme</button></footer>
+
+<script>
+  // Same three themes as the extension's own Theme setting -- a fun,
+  // brand-consistent touch, remembered across the site's own pages via
+  // localStorage (there's no shared backend/build here, so each page
+  // carries this same small script by hand). Defaults to Current
+  // regardless of what the extension itself now defaults new installs
+  // to -- the site keeps its original look as the default first
+  // impression.
+  (function () {
+    var THEMES = ['current', 'tempered', 'slate'];
+    var LABELS = { current: 'Current', tempered: 'Tempered', slate: 'Slate' };
+    var STORAGE_KEY = 'cro-muxon-theme';
+    var toggle = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+      document.body.dataset.theme = theme;
+      toggle.textContent = '[T]heme: ' + LABELS[theme];
+      try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+    }
+
+    function cycleTheme() {
+      var idx = THEMES.indexOf(document.body.dataset.theme || 'current');
+      applyTheme(THEMES[(idx + 1) % THEMES.length]);
+    }
+
+    var stored;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    applyTheme(THEMES.indexOf(stored) !== -1 ? stored : 'current');
+
+    toggle.addEventListener('click', cycleTheme);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 't' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) {
+        cycleTheme();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

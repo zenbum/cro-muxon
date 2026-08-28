@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cro-Muxon Linux Setup</title>
+<style>
+  /* Same three themes as the extension's own Theme setting -- see the [T]
+     toggle near the bottom of the page. Kept in sync by hand across each
+     of this site's pages -- no shared stylesheet here. */
+  :root {
+    --bg: #000000;
+    --panel-bg: #003300;
+    --code-bg: #001a00;
+    --code-border: #002200;
+    --fg: #00ff00;
+    --accent: #00ff00;
+    --border: #00ff00;
+    --border-style: dashed;
+    --font: 'Courier New', Courier, monospace;
+  }
+  body[data-theme="tempered"] {
+    --bg: #0b0e0c;
+    --panel-bg: #14201a;
+    --code-bg: #14201a;
+    --code-border: #1a251e;
+    --fg: #8fc9a3;
+    --accent: #7fd9a4;
+    --border: #33453a;
+    --border-style: dashed;
+  }
+  body[data-theme="slate"] {
+    --bg: #1c1c1e;
+    --panel-bg: #232325;
+    --code-bg: #232325;
+    --code-border: #2c2c2e;
+    --fg: #e5e5e7;
+    --accent: #30d158;
+    --border: #38383a;
+    --border-style: solid;
+    --font: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  h1 {
+    border-bottom: 1px var(--border-style) var(--border);
+    padding-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  h2 {
+    margin-top: 40px;
+    background: var(--panel-bg);
+    padding: 6px 10px;
+    font-size: 1em;
+    letter-spacing: 1px;
+  }
+  h3 {
+    margin-top: 28px;
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+    border-bottom: 1px dashed var(--panel-bg);
+    padding-bottom: 4px;
+  }
+  p.section-note {
+    opacity: 0.85;
+    margin: 10px 0 18px;
+  }
+  .callout {
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    margin: 18px 0;
+    opacity: 0.9;
+  }
+  .callout strong { opacity: 1; }
+  ol, ul { padding-left: 24px; }
+  li { margin-bottom: 10px; }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    overflow-x: auto;
+    margin: 10px 0 18px;
+  }
+  code {
+    font-family: inherit;
+  }
+  p code, li code {
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border: 1px solid var(--code-border);
+  }
+  kbd {
+    display: inline-block;
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    font-family: inherit;
+    font-size: 0.85em;
+    font-weight: bold;
+  }
+  a { color: var(--accent); }
+  footer { margin-top: 48px; opacity: 0.7; font-size: 0.85em; }
+  .theme-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline dotted;
+  }
+  .theme-toggle:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<h1>[CRO-MUXON] Linux Setup</h1>
+<p class="section-note">Cro-Muxon tiles real browser windows by telling Chromium
+exactly where to put them and how big to make them. On Linux, that only works under
+<strong>X11</strong> &mdash; under native <strong>Wayland</strong>, window placement
+is a protocol-level restriction, not a Cro-Muxon bug: apps simply aren't allowed to
+know or set their own screen position, for isolation reasons. Most modern
+Ubuntu/GNOME installs default to Wayland, which is why splits and tiling can
+silently do nothing at all until you fix this. (On Google Chrome instead of
+Chromium? Everything below works the same way &mdash; just swap
+<code>google-chrome-stable</code> in for <code>chromium</code>.)</p>
+
+<div class="callout">
+  <strong>Check which one you're on:</strong> run <code>echo $XDG_SESSION_TYPE</code>
+  in a terminal, or look under Settings &rarr; About. If it says <code>wayland</code>,
+  keep reading.
+</div>
+
+<h2>THE FIX: RUN CHROMIUM WITH --ozone-platform=x11</h2>
+<p class="section-note">This forces Chromium to run through XWayland instead of
+native Wayland, which restores its ability to position and resize windows. It
+doesn't change anything else about how it looks or behaves. Two ways to launch it
+this way &mdash; pick whichever fits how you want to use it day to day.</p>
+<p class="section-note">Running the Snap build (Ubuntu's <code>apt install
+chromium-browser</code> default)? Option A below still works fine, but Snap's
+confinement doesn't reliably honor custom flags added through a
+<code>.desktop</code> file, so Option B may not stick &mdash; if it doesn't, Option
+A is the reliable fallback.</p>
+
+<h3>Option A &mdash; one command, every time</h3>
+<p class="section-note">Quit every open Chromium window first (it keeps running in
+the background even after the last window closes, so check your system tray/app
+switcher too) &mdash; the flag only takes effect at startup, not on windows already
+open. Then, from a terminal:</p>
+<pre><code>chromium --ozone-platform=x11</code></pre>
+
+<h3>Option B &mdash; a launcher you can search for</h3>
+<p class="section-note">Typing a command every time gets old fast. This creates a
+second, ordinary-looking launcher &mdash; "Chromium (X11)" &mdash; that shows up in
+the same app search as everything else (GNOME's Activities overview, on Ubuntu), so
+you can launch it the normal way from now on.</p>
+<ol>
+  <li>Find Chromium's real binary path:
+    <pre><code>which chromium</code></pre>
+    (commonly <code>/usr/bin/chromium</code>, or <code>/snap/bin/chromium</code> if
+    you're on the Snap build)
+  </li>
+  <li>Create <code>~/.local/share/applications/chromium-x11.desktop</code> with this
+    content, using the path from step 1:
+    <pre><code>[Desktop Entry]
+Name=Chromium (X11)
+Comment=Chromium via XWayland, for Cro-Muxon's window tiling
+Exec=/usr/bin/chromium --ozone-platform=x11 %U
+Terminal=false
+Type=Application
+Icon=chromium
+Categories=Network;WebBrowser;
+StartupWMClass=Chromium</code></pre>
+  </li>
+  <li>Save the file. It should appear in your app search within a few seconds &mdash;
+    if it doesn't, log out and back in, or run
+    <code>update-desktop-database ~/.local/share/applications</code>.</li>
+  <li>From now on, launch Chromium through this "Chromium (X11)" entry instead of
+    the regular icon whenever you want to use Cro-Muxon.</li>
+</ol>
+
+<h2>VERIFY IT WORKED</h2>
+<p class="section-note">Open any page, press <kbd>Alt+Shift+H</kbd> to split it. If
+the window visibly resizes and tiles side-by-side with a new pane, you're on X11 and
+everything should work normally from here &mdash; splits, drags, the dashboard,
+zoom, all of it. If nothing happens, double-check every Chromium window and
+background process was actually closed before relaunching with the flag.</p>
+
+<h2>IF Alt+Shift+C DOESN'T OPEN THE DASHBOARD</h2>
+<p class="section-note">Splits (<kbd>Alt+Shift+V</kbd> / <kbd>Alt+Shift+H</kbd>)
+working while the dashboard's own shortcut does nothing points at GNOME itself,
+not Cro-Muxon &mdash; under Wayland (even through XWayland), the desktop shell
+reserves global keyboard shortcuts before individual apps ever see them, unlike
+X11 where any app could grab a combo directly. If something on your system
+already claims <kbd>Alt+Shift+C</kbd>, Chromium silently leaves the extension's
+shortcut unassigned rather than showing a conflict.</p>
+<p class="section-note">Fix: open <code>chrome://extensions/shortcuts</code> and
+set "Toggle the dashboard" to whatever combo you like &mdash; that page lists
+every extension's shortcuts in one place, so it's also the fastest way to spot
+if something else already sits on the key you want.</p>
+
+<footer><a href="index.html">&larr; Back to Cro-Muxon</a> &middot; <button type="button" class="theme-toggle" id="theme-toggle" title="Cycle theme (t)">[T]heme</button></footer>
+
+<script>
+  (function () {
+    var THEMES = ['current', 'tempered', 'slate'];
+    var LABELS = { current: 'Current', tempered: 'Tempered', slate: 'Slate' };
+    var STORAGE_KEY = 'cro-muxon-theme';
+    var toggle = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+      document.body.dataset.theme = theme;
+      toggle.textContent = '[T]heme: ' + LABELS[theme];
+      try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+    }
+
+    function cycleTheme() {
+      var idx = THEMES.indexOf(document.body.dataset.theme || 'current');
+      applyTheme(THEMES[(idx + 1) % THEMES.length]);
+    }
+
+    var stored;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    applyTheme(THEMES.indexOf(stored) !== -1 ? stored : 'current');
+
+    toggle.addEventListener('click', cycleTheme);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 't' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) {
+        cycleTheme();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

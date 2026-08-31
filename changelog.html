@@ -84,6 +84,42 @@
 
 <div class="version">
   <div class="version-header">
+    <span class="num">v1.3.0</span>
+    <span class="date">2026-08-31 &middot; Visual refresh</span>
+  </div>
+  <ul>
+    <li>Changed: reworked the navigator tree's look &mdash; a workspace's
+      number is now a small circular badge, and dotted guide lines connect
+      it down to its panes, both sitting in their own quiet column to the
+      left of the colored workspace header and pane list rather than mixed
+      into the text itself.</li>
+    <li>Changed: pane rows no longer show a bracketed index number &mdash;
+      it wasn't tied to anything (unlike a workspace's own number, still
+      used by the quick-jump digit keys).</li>
+    <li>Changed: the selected-pane highlight is now a softer tint of the
+      theme's own accent color, easier to tell apart from the workspace
+      header's own fill at a glance.</li>
+    <li>Changed: the dashboard now uses a standard system UI font on Slate,
+      Sepia, and all 16 brand themes, matching how most modern dashboard
+      tools render their own text. The two CRT-styled themes (Current,
+      Tempered Terminal) keep their monospace look.</li>
+    <li>Changed: in thin mode, rows are left-aligned, each workspace shows
+      its number, and pressing a digit key now jumps straight to and
+      switches to that workspace.</li>
+    <li>New: Settings now shows a small color swatch next to the current
+      theme's name.</li>
+    <li>Fixed: the workspace-number badge could be nearly invisible on a
+      couple of themes (most noticeably Advocate) where the accent color
+      sat too close in brightness to the background behind it.</li>
+    <li>Fixed: the navigator's own corner icon (thin mode) no longer
+      renders as a plain, near-black shape on themes with a dark text
+      color &mdash; it now picks up a blend of that theme's own accent
+      color instead.</li>
+  </ul>
+</div>
+
+<div class="version">
+  <div class="version-header">
     <span class="num">v1.2.0</span>
     <span class="date">2026-08-31 &middot; Feature update</span>
   </div>

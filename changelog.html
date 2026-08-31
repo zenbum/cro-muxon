@@ -84,6 +84,71 @@
 
 <div class="version">
   <div class="version-header">
+    <span class="num">v1.3.1</span>
+    <span class="date">2026-08-31 &middot; Navigator cursor &amp; visibility refresh</span>
+  </div>
+  <ul>
+    <li>Added: pressing a workspace's number key now opens it for a quick
+      look &mdash; reveals its panes/notes and moves the cursor there &mdash;
+      without switching your actual active pane or window. Works on any
+      workspace, not just the one you're currently in. Press the same
+      number again once you're there to fold it back closed.</li>
+    <li>Added: a new "Auto-focus empty pane's search" setting (off by
+      default) controls whether pressing Enter on an empty pane always
+      jumps real keyboard focus into its search box, even when "Keep focus
+      on navigator" is checked.</li>
+    <li>Added: non-active workspaces now visibly recede &mdash; an expanded
+      one dims and shrinks slightly to read as clearly secondary, a
+      collapsed one recedes further into the background, and the active
+      workspace itself picks up a subtle drop shadow to read as raised
+      above the rest.</li>
+    <li>Changed: the navigator's keyboard cursor is now two separate things
+      &mdash; a dashed "target" outline that moves as you browse the tree or
+      preview a workspace by number, and a solid highlight that marks
+      whichever pane is actually selected. Looking around no longer drags
+      the solid highlight away from the pane that's really selected.</li>
+    <li>Changed: the selected-pane highlight is now a smaller, lighter tint
+      sized to its own text rather than a full-width bar, so it's easier to
+      tell apart from a workspace's own header bar at a glance.</li>
+    <li>Changed: reordering a workspace (Alt+Shift+Up/Down), killing one
+      (Shift+D), renaming one, popping a pane out on its own (Space), and
+      zooming into a pane (f) now all act on wherever the target cursor
+      currently is, rather than requiring it to match the actually-selected
+      pane first.</li>
+    <li>Fixed: switching between two workspaces, or toggling the dashboard
+      between thin and wide mode, while "Keep visible" was on could cause a
+      visible flash &mdash; a pane briefly snapping to full width and back
+      to make room for the docked navigator, even when its own size didn't
+      actually need to change. The pane you're switching away from is no
+      longer eagerly resized on the spot; it's corrected the next time you
+      actually switch back to it instead.</li>
+    <li>Fixed: the navigator's target/selection outline could be hard to
+      see on some themes &mdash; especially light ones (Cloud, Advocate)
+      where the highlight color already sat close to the background to
+      begin with &mdash; now solved per-theme so it's reliably visible
+      everywhere.</li>
+    <li>Fixed: reordering a workspace (Alt+Shift+Up/Down) while a different
+      pane was the one actually selected could leave the wrong pane
+      appearing selected afterward.</li>
+    <li>Fixed: a pane with a very long name (a browser tab title can easily
+      run 60+ characters) could still nudge the whole navigator sideways
+      when the target cursor landed on it, even though the name itself
+      displayed correctly truncated with an ellipsis.</li>
+    <li>Fixed: pressing <code>l</code>/Right to reopen a folded workspace
+      could open the wrong one &mdash; it only ever searched backward from
+      the cursor for the nearest folded workspace, so one folded just below
+      the cursor could be skipped in favor of a different one further away
+      through the wraparound.</li>
+    <li>Fixed: a workspace named "default" (or a decorated variant like
+      "&#127968; Default" or "Default &#10024;") is now recognized as the
+      pinned home-base workspace regardless of any emoji or extra
+      characters around the name, matching the same stripped name its own
+      exported file would use.</li>
+  </ul>
+</div>
+
+<div class="version">
+  <div class="version-header">
     <span class="num">v1.3.0</span>
     <span class="date">2026-08-31 &middot; Visual refresh</span>
   </div>

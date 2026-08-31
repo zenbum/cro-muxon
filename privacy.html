@@ -86,7 +86,7 @@
 <body>
 
 <h1>[CRO-MUXON] Privacy Policy</h1>
-<p class="updated">Last updated: 2026-08-26</p>
+<p class="updated">Last updated: 2026-08-31</p>
 
 <p>Cro-Muxon is a keyboard-driven window-tiling workspace manager for Chrome.
 This policy explains what data the extension touches and, more importantly,
@@ -95,7 +95,13 @@ what it does not do with it.</p>
 <h2>Summary</h2>
 <p><strong>Cro-Muxon does not collect, transmit, sell, or share any data.</strong>
 Everything it stores stays on your device, in your own browser's local
-extension storage. The extension makes no network requests of any kind.</p>
+extension storage. The extension makes no network requests of its own by
+default. The one opt-in exception is the URL queue's "Prefetch queue
+previews" setting (off unless you turn it on, and asks permission the first
+time): when enabled, fetching a queued link's title/thumbnail is a direct
+request from your own browser straight to that link's own destination —
+never through a server of ours, and never carrying anything besides the
+URL itself.</p>
 
 <h2>What Cro-Muxon stores, and where</h2>
 <p>All data is kept in Chrome's <code>chrome.storage.local</code>, which is
@@ -111,6 +117,11 @@ anywhere:</p>
     to a local JSON file.</li>
   <li><strong>The ID of your last-focused window</strong> — used to highlight
     the correct pane when you open the picker.</li>
+  <li><strong>URL queue entries</strong> — links you've explicitly queued
+    (via the right-click menu or a keyboard shortcut), each with its own
+    URL and, if "Prefetch queue previews" is on, a title/thumbnail/short
+    description fetched directly from that link. Removed the moment you
+    use or discard the entry.</li>
 </ul>
 <p>None of this is readable by other extensions, other websites, or by us —
 it lives entirely inside your own browser installation.</p>
@@ -139,6 +150,17 @@ it lives entirely inside your own browser installation.</p>
     Clipboard contents are only read at the moment you press <code>p</code>,
     are used solely to navigate the pane you're pasting into, and are never
     stored or sent anywhere.</li>
+  <li><strong>contextMenus</strong> — to add Cro-Muxon's own items (split,
+    open in a new workspace, yank to queue, and so on) to Chrome's
+    right-click menu.</li>
+  <li><strong>downloads</strong> — to write a workspace layout to a JSON
+    file on your own device when you use Export.</li>
+  <li><strong>Optional: access to http/https pages</strong> — not granted
+    at install, and never requested unless you turn on "Prefetch queue
+    previews" in Settings, at which point Chrome shows its own permission
+    prompt. Used only to fetch a queued link's own page directly, for its
+    title/thumbnail/description — declining, or leaving the setting off,
+    means nothing is ever fetched.</li>
 </ul>
 
 <h2>Local export/import</h2>
@@ -149,8 +171,11 @@ on your device — Cro-Muxon never uploads it anywhere.</p>
 
 <h2>Third parties</h2>
 <p>Cro-Muxon does not use analytics, advertising, or crash-reporting
-services, and does not communicate with any server operated by us or anyone
-else.</p>
+services, and does not communicate with any server operated by us. The one
+exception is the opt-in "Prefetch queue previews" setting described above:
+when it's on, fetching a queued link talks directly to that link's own
+destination, the same as visiting it in a tab would — never to a
+third-party server acting on our behalf.</p>
 
 <h2>Changes to this policy</h2>
 <p>If this policy changes, the "Last updated" date above will be revised and

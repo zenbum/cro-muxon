@@ -84,6 +84,51 @@
 
 <div class="version">
   <div class="version-header">
+    <span class="num">v1.2.0</span>
+    <span class="date">2026-08-31 &middot; Feature update</span>
+  </div>
+  <ul>
+    <li>New: a persistent link queue. Right-click any link and choose "Yank
+      Link to Queue" &mdash; or press <code>Shift+Y</code> on a pane
+      already open in a workspace &mdash; to save its URL for later without
+      leaving what you're doing. Press <code>Shift+P</code> to browse the
+      queue: move with <code>j</code>/<code>k</code> or the arrow keys,
+      filter by typing <code>/</code>, press <code>Enter</code> to drop the
+      selected link into whichever pane you have selected, or
+      <code>d</code> to remove one you don't need.</li>
+    <li>New: queue entries can show the linked page's real title and a
+      thumbnail image, fetched in the background. This is opt-in &mdash;
+      turn on "Prefetch queue previews" in Settings and it'll ask for a
+      one-time permission the first time. Off, or declined, entries just
+      show their raw URL and nothing is fetched.</li>
+    <li>New: press <code>w</code> on a pane to switch it between a normal
+      tabbed browser window and a borderless popup window.</li>
+    <li>New: right-click a link and choose "Open link in New Cro-Muxon
+      Workspace (background)" to open it in its own workspace without
+      switching away from what you're doing.</li>
+    <li>New: a full keyboard-shortcuts reference inside the dashboard
+      itself, opened with the new <code>?</code> icon.</li>
+    <li>New: <code>Shift+D</code> closes an entire workspace (every pane in
+      it) at once, behind a confirmation prompt first.</li>
+    <li>New: 16 additional color themes, organized into four browsable
+      categories, plus a new visual picker for trying them out before
+      switching &mdash; replaces the old dropdown entirely.</li>
+    <li>New: the dashboard now reopens automatically after a reload, if it
+      was already open beforehand.</li>
+    <li>Fixed: reloading the extension while a workspace or note popup was
+      open could occasionally leave dead, empty windows behind.</li>
+    <li>Fixed: some browser shortcuts (Cmd/Ctrl combinations like zoom,
+      reload, new tab, bookmark, or find) were occasionally swallowed by
+      the dashboard's own keyboard shortcuts.</li>
+    <li>Fixed: the brand icon didn't match lighter color themes correctly.</li>
+    <li>Fixed: a handful of smaller bugs around switching a pane's window
+      type, creating a workspace in the background, and zooming a pane
+      with a note while "Show all notes" was on.</li>
+  </ul>
+</div>
+
+<div class="version">
+  <div class="version-header">
     <span class="num">v1.1.0</span>
     <span class="date">2026-08-28 &middot; Feature update</span>
   </div>
